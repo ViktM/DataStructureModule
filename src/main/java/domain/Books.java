@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Books {
-    private List<Book> books =  new ArrayList<>();
+    private List<Book> books = new ArrayList<>();
 
     public List<Book> getBooks() {
         return books;

@@ -15,6 +15,7 @@ public class App extends Application<AppConfig> {
     @Override
     public void run(AppConfig config, Environment environment) throws Exception {
         registerBookResources(config, environment);
+        registerBookResourcesByAuthor(config, environment);
     }
 
     private void registerBookResources(AppConfig config, Environment environment) {
@@ -22,6 +23,15 @@ public class App extends Application<AppConfig> {
                 new JsonBookRepository(config.getLibraryPath(), environment.getObjectMapper());
         BookService bookService = new BookService(booksRepository);
         final BookResource bookResource = new BookResource(bookService);
+        environment.jersey().register(bookResource);
+    }
+
+    private void registerBookResourcesByAuthor(AppConfig config, Environment environment) {
+        BooksRepository booksRepository =
+                new JsonBookRepository(config.getLibraryPath(), environment.getObjectMapper());
+        BookService bookService = new BookService(booksRepository);
+        final BookResource bookResource =
+                new BookResource(bookService, config.getDefaultAuthor());
         environment.jersey().register(bookResource);
     }
 }
