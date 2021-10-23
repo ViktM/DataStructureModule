@@ -1,0 +1,4 @@
+libraryPath: src/main/resources/books.json
+
+templateAuthor: %s
+defaultAuthor: Dostoevsky
