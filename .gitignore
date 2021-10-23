@@ -26,3 +26,6 @@
 /build/classes/java/main/domain/BookResource.class
 /build/classes/java/main/ports/reader/JsonBookRepository.class
 /build/classes/java/main/App.class
+/build/classes/java/main/domain/exception/JsonReaderException.class
+/build/classes/java/main/domain/exception/LibraryException.class
+/build/classes/java/main/domain/exception/ServiceFailedToGetBooksException.class
