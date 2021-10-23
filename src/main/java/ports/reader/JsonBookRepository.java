@@ -4,8 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import domain.Book;
 import domain.Books;
 import domain.BooksRepository;
+import domain.exception.JsonReaderException;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class JsonBookRepository implements BooksRepository {
@@ -22,12 +24,12 @@ public class JsonBookRepository implements BooksRepository {
         return readJson();
     }
 
-    public List<Book> readJson() throws Exception {
+    public List<Book> readJson() throws JsonReaderException {
         try {
             Books books = objectMapper.readValue(new File(path), Books.class);
             return books.getBooks();
-        } catch (Exception e) {
-            throw new Exception("Could not get list of books");
+        } catch (IOException e) {
+            throw new JsonReaderException("Could not read in list of books");
         }
     }
 }
