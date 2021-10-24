@@ -6,9 +6,9 @@ public class Book {
     private String imageLink;
     private String language;
     private String link;
-    private String pages;
+    private int pages;
     private String title;
-    private String year;
+    private int year;
 
     public Book() {
     }
@@ -19,9 +19,9 @@ public class Book {
             String imageLink,
             String language,
             String link,
-            String pages,
+            int pages,
             String title,
-            String year
+            int year
     ) {
         this.author = author;
         this.country = country;
@@ -53,7 +53,7 @@ public class Book {
         return link;
     }
 
-    public String getPages() {
+    public int getPages() {
         return pages;
     }
 
@@ -61,7 +61,7 @@ public class Book {
         return title;
     }
 
-    public String getYear() {
+    public int getYear() {
         return year;
     }
 
