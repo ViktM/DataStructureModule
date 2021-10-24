@@ -1,5 +1,7 @@
 # Library app
 
+A java 11, dropwizard application for uni.
+
 ## Features
 
 ### View all books
