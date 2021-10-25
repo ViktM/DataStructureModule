@@ -20,11 +20,7 @@ public class JsonBookRepository implements BooksRepository {
     }
 
     @Override
-    public List<Book> getAllBooks() throws Exception {
-        return readJson();
-    }
-
-    public List<Book> readJson() throws JsonReaderException {
+    public List<Book> getAllBooks() throws JsonReaderException {
         try {
             Books books = objectMapper.readValue(new File(path), Books.class);
             return books.getBooks();

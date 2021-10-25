@@ -29,3 +29,5 @@
 /build/classes/java/main/domain/exception/JsonReaderException.class
 /build/classes/java/main/domain/exception/LibraryException.class
 /build/classes/java/main/domain/exception/ServiceFailedToGetBooksException.class
+/build/libs/DataStructureModule-1.0-SNAPSHOT.jar
+/build/tmp/shadowJar/MANIFEST.MF

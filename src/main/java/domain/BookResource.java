@@ -1,7 +1,5 @@
 package domain;
 
-import com.codahale.metrics.annotation.Timed;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -33,10 +31,14 @@ public class BookResource {
     }
 
     @GET
-    @Timed
     @Path("/authorSearch")
     public List<Book> showAllBooksByAuthor(@QueryParam("author") Optional<String> author) throws Exception {
-        final String finalAuthor = author.orElse(defaultAuthor);
-        return bookService.getBooksByAuthors(finalAuthor);
+        return bookService.getBooksByAuthors(author.orElse(defaultAuthor));
+    }
+
+    @GET
+    @Path("/deleteAuthor")
+    public List<Book> showAllBooksAfterDeleted(@QueryParam("author") Optional<String> author) throws Exception {
+        return bookService.getBooksAfterRemovingAuthors(author.orElse(defaultAuthor));
     }
 }

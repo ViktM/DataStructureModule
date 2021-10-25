@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class Book {
     private String author;
     private String country;
@@ -77,5 +79,25 @@ public class Book {
                 ", title='" + title + '\'' +
                 ", year=" + year +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return pages == book.pages &&
+                year == book.year &&
+                Objects.equals(author, book.author) &&
+                Objects.equals(country, book.country) &&
+                Objects.equals(imageLink, book.imageLink) &&
+                Objects.equals(language, book.language) &&
+                Objects.equals(link, book.link) &&
+                Objects.equals(title, book.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(author, country, imageLink, language, link, pages, title, year);
     }
 }
