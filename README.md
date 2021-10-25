@@ -13,6 +13,11 @@ A java 11, dropwizard application for uni.
 `GET     /library/authorSearch?author= (domain.BookResource)` <- type partial name of author in path. 
 For example: `GET /library/authorSearch?author=Dostoevsky`
 
+### Delete author
+
+`GET     /library/deleteAuthor?author= (domain.BookResource)` <- type partial name of author in path.
+For example: `GET /library/deleteAuthor?author=Dostoevsky`
+
 ### Running the app
 
 - From the commandline:
