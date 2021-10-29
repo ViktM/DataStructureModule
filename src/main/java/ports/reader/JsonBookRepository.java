@@ -11,8 +11,8 @@ import java.io.IOException;
 import java.util.List;
 
 public class JsonBookRepository implements BooksRepository {
-    private String path;
-    private ObjectMapper objectMapper;
+    private final String path;
+    private final ObjectMapper objectMapper;
 
     public JsonBookRepository(String path, ObjectMapper objectMapper) {
         this.path = path;

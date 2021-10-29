@@ -2,12 +2,14 @@ package domain;
 
 import domain.exception.ServiceFailedToGetBooksException;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class BookService {
-    private BooksRepository booksRepository;
+    private final BooksRepository booksRepository;
 
     public BookService(BooksRepository booksRepository) {
         this.booksRepository = booksRepository;
@@ -21,6 +23,29 @@ public class BookService {
             throw new ServiceFailedToGetBooksException("Service failed to get all books");
         }
     }
+
+    List<Book> getBooksAbc() throws ServiceFailedToGetBooksException {
+        try {
+
+
+            List<Book> allBooks = booksRepository.getAllBooks();
+
+            if(allBooks.size() >0) {
+                allBooks.sort(new Comparator<Book>() {
+                    @Override
+                    public int compare(Book o1, Book o2) {
+                        return o1.getAuthor().compareTo(o2.getAuthor());
+                    }
+                });
+            }
+
+            return allBooks;
+
+        } catch (Exception e) {
+            throw new ServiceFailedToGetBooksException("Service failed to get all books");
+        }
+    }
+
 
     List<Book> getBooksByAuthors(String author) throws ServiceFailedToGetBooksException {
         try {

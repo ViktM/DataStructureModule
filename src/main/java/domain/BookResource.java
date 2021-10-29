@@ -11,23 +11,28 @@ import java.util.Optional;
 @Path("/library")
 @Produces(MediaType.APPLICATION_JSON)
 public class BookResource {
-    private BookService bookService;
-
+    private final BookService bookService;
     private String defaultAuthor;
+
+    public BookResource(BookService bookService) {
+        this.bookService = bookService;
+    }
 
     public BookResource(BookService bookService, String defaultAuthor) {
         this.bookService = bookService;
         this.defaultAuthor = defaultAuthor;
     }
 
-    public BookResource(BookService bookService) {
-        this.bookService = bookService;
-    }
-
     @GET
     @Path("/allbooks")
     public List<Book> showAllBooks() throws Exception {
         return bookService.getBooks();
+    }
+
+    @GET
+    @Path("/allbooksAbc")
+    public List<Book> showAllBooksAbc() throws Exception {
+        return bookService.getBooksAbc();
     }
 
     @GET
