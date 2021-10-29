@@ -18,19 +18,17 @@ public class BookService {
     List<Book> getBooks() throws ServiceFailedToGetBooksException {
         try {
             return booksRepository.getAllBooks();
-
         } catch (Exception e) {
             throw new ServiceFailedToGetBooksException("Service failed to get all books");
         }
     }
 
+    //Try this with Trees perhaps?
     List<Book> getBooksAbc() throws ServiceFailedToGetBooksException {
         try {
-
-
             List<Book> allBooks = booksRepository.getAllBooks();
 
-            if(allBooks.size() >0) {
+            if (allBooks.size() > 0) {
                 allBooks.sort(new Comparator<Book>() {
                     @Override
                     public int compare(Book o1, Book o2) {
@@ -38,14 +36,12 @@ public class BookService {
                     }
                 });
             }
-
             return allBooks;
 
         } catch (Exception e) {
             throw new ServiceFailedToGetBooksException("Service failed to get all books");
         }
     }
-
 
     List<Book> getBooksByAuthors(String author) throws ServiceFailedToGetBooksException {
         try {
