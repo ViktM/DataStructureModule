@@ -1,8 +1,8 @@
 package domain;
 
 import domain.exception.ServiceFailedToGetBooksException;
+import ports.reader.InMemoryBooksRepository;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
@@ -10,23 +10,24 @@ import java.util.stream.Collectors;
 
 public class BookService {
     private final BooksRepository booksRepository;
+    private InMemoryBooksRepository inMemoryBooksRepository;
 
-    public BookService(BooksRepository booksRepository) {
+    public BookService(BooksRepository booksRepository) throws Exception {
         this.booksRepository = booksRepository;
+        this.inMemoryBooksRepository = new InMemoryBooksRepository(booksRepository.getAllBooks());
     }
 
     List<Book> getBooks() throws ServiceFailedToGetBooksException {
         try {
-            return booksRepository.getAllBooks();
+            return inMemoryBooksRepository.getAllBooks();
         } catch (Exception e) {
             throw new ServiceFailedToGetBooksException("Service failed to get all books");
         }
     }
 
-    //Try this with Trees perhaps?
     List<Book> getBooksAbc() throws ServiceFailedToGetBooksException {
         try {
-            List<Book> allBooks = booksRepository.getAllBooks();
+            List<Book> allBooks = inMemoryBooksRepository.getAllBooks();
 
             if (allBooks.size() > 0) {
                 allBooks.sort(new Comparator<Book>() {
@@ -45,7 +46,7 @@ public class BookService {
 
     List<Book> getBooksByAuthors(String author) throws ServiceFailedToGetBooksException {
         try {
-            return booksRepository.getAllBooks().stream().filter(
+            return inMemoryBooksRepository.getAllBooks().stream().filter(
                     book -> book.getAuthor().contains(author)).collect(Collectors.toList());
 
         } catch (Exception e) {
@@ -53,14 +54,12 @@ public class BookService {
         }
     }
 
-    //Implement this to actually delete entries from books list. It now just re-fetches the list from the json file
-    //so the entries deleted will be put back
     List<Book> getBooksAfterRemovingAuthors(String author) throws ServiceFailedToGetBooksException {
         try {
-            Set<String> authors = booksRepository.getAllBooks().stream().map(Book::getAuthor).filter(
+            Set<String> authors = inMemoryBooksRepository.getAllBooks().stream().map(Book::getAuthor).filter(
                     bookAuthor -> bookAuthor.contains(author)).collect(Collectors.toSet());
 
-            List<Book> books = booksRepository.getAllBooks();
+            List<Book> books = inMemoryBooksRepository.getAllBooks();
 
             books.removeIf(a -> authors.contains(a.getAuthor()));
 

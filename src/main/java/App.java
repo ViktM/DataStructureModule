@@ -18,7 +18,7 @@ public class App extends Application<AppConfig> {
         registerBookResourcesByAuthor(config, environment);
     }
 
-    private void registerBookResources(AppConfig config, Environment environment) {
+    private void registerBookResources(AppConfig config, Environment environment) throws Exception {
         BooksRepository booksRepository =
                 new JsonBookRepository(config.getLibraryPath(), environment.getObjectMapper());
         BookService bookService = new BookService(booksRepository);
@@ -26,7 +26,7 @@ public class App extends Application<AppConfig> {
         environment.jersey().register(bookResource);
     }
 
-    private void registerBookResourcesByAuthor(AppConfig config, Environment environment) {
+    private void registerBookResourcesByAuthor(AppConfig config, Environment environment) throws Exception {
         BooksRepository booksRepository =
                 new JsonBookRepository(config.getLibraryPath(), environment.getObjectMapper());
         BookService bookService = new BookService(booksRepository);
