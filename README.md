@@ -18,6 +18,11 @@ For example: `GET /library/authorSearch?author=Dostoevsky`
 `GET     /library/deleteAuthor?author= (domain.BookResource)` <- type partial name of author in path.
 For example: `GET /library/deleteAuthor?author=Dostoevsky`
 
+### Add book
+
+`GET     http://localhost:8080/library/addBook?author=Woolf&country=someCountry&imageLink=someLInk` <- add values
+to each attribute of a Book by passing it in through `&` separated query params.
+
 ### Running the app
 
 - From the commandline:

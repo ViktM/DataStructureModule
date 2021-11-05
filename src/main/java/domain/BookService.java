@@ -69,4 +69,27 @@ public class BookService {
             throw new ServiceFailedToGetBooksException("Service failed to delete books");
         }
     }
+
+    List<Book> getBooksAfterAddingAuthor(
+            String author,
+            String country,
+            String imageLink,
+            String language,
+            String link,
+            int pages,
+            String title,
+            int year
+    ) throws ServiceFailedToGetBooksException {
+        try {
+
+            List<Book> books = inMemoryBooksRepository.getAllBooks();
+
+            books.add(new Book(author, country, imageLink, language, link, pages, title, year));
+
+            return books;
+
+        } catch (Exception e) {
+            throw new ServiceFailedToGetBooksException("Service failed to delete books");
+        }
+    }
 }

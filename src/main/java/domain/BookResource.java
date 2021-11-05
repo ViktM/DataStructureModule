@@ -46,4 +46,27 @@ public class BookResource {
     public List<Book> showAllBooksAfterDeleted(@QueryParam("author") Optional<String> author) throws Exception {
         return bookService.getBooksAfterRemovingAuthors(author.orElse(defaultAuthor));
     }
+
+    @GET
+    @Path("/addBook")
+    public List<Book> showAllBooksAfterAddingNew(
+            @QueryParam("author") Optional<String> author,
+            @QueryParam("country") Optional<String> country,
+            @QueryParam("imageLink") Optional<String> imageLink,
+            @QueryParam("language") Optional<String> language,
+            @QueryParam("link") Optional<String> link,
+            @QueryParam("pages") Optional<Integer> pages,
+            @QueryParam("title") Optional<String> title,
+            @QueryParam("year") Optional<Integer> year
+    ) throws Exception {
+        return bookService.getBooksAfterAddingAuthor(
+                author.orElse(null),
+                country.orElse(null),
+                imageLink.orElse(null),
+                language.orElse(null),
+                link.orElse(null),
+                pages.orElse(0),
+                title.orElse(null),
+                year.orElse(0));
+    }
 }

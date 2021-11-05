@@ -32,3 +32,4 @@
 /build/libs/DataStructureModule-1.0-SNAPSHOT.jar
 /build/tmp/shadowJar/MANIFEST.MF
 /build/classes/java/main/domain/BookService$1.class
+/build/classes/java/main/ports/reader/
